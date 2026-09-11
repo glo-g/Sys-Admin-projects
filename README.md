@@ -3,14 +3,14 @@ Compiled below are my projects in this field showcasing various skills in relati
 
 1.Multi-Tiered Local Web Server & Hardened SSH.
 
-**Step 1: Lab Environment Setup**
-Download Required Software:
+****Step 1: Lab Environment Setup**
+Download Required Software:**
 
 Hypervisor: Download and install Oracle VirtualBox.
 
 Linux OS ISO: Download the Ubuntu Server 24.04 LTS (or Rocky Linux 9 if you prefer an Enterprise Red Hat ecosystem) ISO image.
 
-Step 2:Create the Virtual Machine:
+**Step 2:Create the Virtual Machine:**
 
 Open VirtualBox → Click New.
 
