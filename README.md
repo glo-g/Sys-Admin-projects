@@ -3,16 +3,23 @@ Compiled below are my projects in this field showcasing various skills in relati
 
 1.Multi-Tiered Local Web Server & Hardened SSH.
 
-Prerequisites: Basic familiarity with Linux CLI, package management, and basic SSH usage.
+Step 1: Lab Environment Setup
+Download Required Software:
 
-Environment:Local Hypervisor: VirtualBox, KVM, or VMware Workstation.
+Hypervisor: Download and install Oracle VirtualBox.
 
-OS: Debian 12 or Ubuntu Server 22.04 LTS (recommended for this baseline phase).
+Linux OS ISO: Download the Ubuntu Server 24.04 LTS (or Rocky Linux 9 if you prefer an Enterprise Red Hat ecosystem) ISO image.
 
-Specifications: 2 vCPUs, 2 GB RAM, and two virtual hard disks:
+Step 2:Create the Virtual Machine:
 
-Disk 1: 20 GB (OS Installation / Root)
+Open VirtualBox → Click New.
 
-Disk 2: 10 GB (Unformatted, raw disk dedicated for LVM practice)
+Name: Linux-Lab-Server
 
-Network: Bridged Adapter (or Host-Only with NAT) so you can SSH from your host machine.
+Type: Linux | Version: Ubuntu (64-bit)
+
+RAM: 2048 MB (2 GB) minimum.
+
+Processors: 2 CPUs.
+
+Hard Disk: Create a Virtual Hard Disk (dynamically allocated, 20 GB minimum).
