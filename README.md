@@ -3,7 +3,7 @@ Compiled below are my projects in this field showcasing various skills in relati
 
 1.Multi-Tiered Local Web Server & Hardened SSH.
 
-Step 1: Lab Environment Setup
+**Step 1: Lab Environment Setup**
 Download Required Software:
 
 Hypervisor: Download and install Oracle VirtualBox.
