@@ -2,7 +2,9 @@ Ticket #1042: Internal Web Portal Recovery & User Provisioning
 
 Scenario Overview
 
-Resolved an escalated Tier-2 ticket regarding an offline internal web server following an unannounced reboot. Provisioned access for a junior developer, hardened SSH authentication, fixed service auto-start dependencies, and built an automated backup pipeline.
+An internal web app hosting company documentation has gone offline after a server reboot. The Helpdesk escalated ticket #1042 to you:
+
+"Users cannot access the internal documentation site at [http://192.168.56.101](http://192.168.56.101). Additionally, a new junior developer needs SSH access, and we need to make sure our backups are actually working.
 
 System Environment
 
