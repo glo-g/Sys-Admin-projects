@@ -1,25 +1,28 @@
-# Sys-Admin-projects
-Compiled below are my projects in this field showcasing various skills in relation to.
+****Ticket #1042: Internal Web Portal Recovery & User Provisioning**
 
-1.Multi-Tiered Local Web Server & Hardened SSH.
+**Scenario Overview****
+Resolved an escalated Tier-2 ticket regarding an offline internal web server following an unannounced reboot. Provisioned access for a junior developer, hardened SSH authentication, fixed service auto-start dependencies, and built an automated backup pipeline.
 
-****Step 1: Lab Environment Setup**
-Download Required Software:**
+**System Environment**
+  -OS:Rocky Linux 9 / Ubuntu Server 24.04 LTS
+  -Services: NGINX, OpenSSH, Firewalld/UFW, Systemd
 
-Hypervisor: Download and install Oracle VirtualBox.
+**Objectives Completed**
 
-Linux OS ISO: Download the Ubuntu Server 24.04 LTS (or Rocky Linux 9 if you prefer an Enterprise Red Hat ecosystem) ISO image.
+**1. User Provisioning & SSH Hardening**
+- Created `devs` user group and provisioned user `jdev`.
+- Implemented key-based SSH authentication (`ed25519`) and enforced strict file permissions (`700` for `~/.ssh`, `600` for `authorized_keys`).
+  -Restricted password authentication and root SSH access in SSH daemon configurations.
 
-**Step 2:Create the Virtual Machine:**
+** 2. Service Recovery & Troubleshooting**
+* Diagnosed web server outage using `systemctl status nginx` and `journalctl`.
+* Resolved firewall port blockages by enabling HTTP/HTTPS traffic via `firewalld`/`ufw`.
+* Configured `nginx` to automatically start on system boot.
 
-Open VirtualBox → Click New.
+**3. Log Audit & Monitoring**
+* Verified successful user logins in `/var/log/secure` (or `/var/log/auth.log`).
+* Checked system resource overhead (`df -h`, `free -m`, `ps aux`).
 
-Name: Linux-Lab-Server
-
-Type: Linux | Version: Ubuntu (64-bit)
-
-RAM: 2048 MB (2 GB) minimum.
-
-Processors: 2 CPUs.
-
-Hard Disk: Create a Virtual Hard Disk (dynamically allocated, 20 GB minimum).
+** 4. Backup & Disaster Recovery**
+* Developed a Bash script (`scripts/backup_web.sh`) to automatically compress `/var/www/html/` and append operational logs.
+* Simulated data loss by purging site files and successfully restored from `.tar.gz` archive.
