@@ -116,12 +116,12 @@ hostnamectl
 
 Tick each phase off as it is completed.
 
-- [ ] **Phase 1: Initial setup and updates** (R1)
-- [ ] **Phase 2: Users, groups and permissions** (R3)
-- [ ] **Phase 3: SSH hardening** (R2)
-- [ ] **Phase 4: Firewall, SELinux and fail2ban** (R4, R5, R6)
-- [ ] **Phase 5: Web service** (R7)
-- [ ] **Phase 6: Storage with LVM** (R8)
+- [x] **Phase 1: Initial setup and updates** (R1)
+- [x] **Phase 2: Users, groups and permissions** (R3)
+- [x] **Phase 3: SSH hardening** (R2)
+- [x] **Phase 4: Firewall, SELinux and fail2ban** (R4, R5, R6)
+- [x] **Phase 5: Web service** (R7)
+- [x] **Phase 6: Storage with LVM** (R8)
 - [ ] **Phase 7: Backup automation** (R9)
 - [ ] **Phase 8: Monitoring and logging** (R10)
 - [ ] **Phase 9: Final review and (optional) Ansible automation** (R11)
