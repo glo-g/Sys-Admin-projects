@@ -122,9 +122,9 @@ Tick each phase off as it is completed.
 - [x] **Phase 4: Firewall, SELinux and fail2ban** (R4, R5, R6)
 - [x] **Phase 5: Web service** (R7)
 - [x] **Phase 6: Storage with LVM** (R8)
-- [ ] **Phase 7: Backup automation** (R9)
-- [ ] **Phase 8: Monitoring and logging** (R10)
-- [ ] **Phase 9: Final review and (optional) Ansible automation** (R11)
+- [x] **Phase 7: Backup automation** (R9)
+- [x] **Phase 8: Monitoring and logging** (R10)
+- [x] **Phase 9: Final review and (optional) Ansible automation** (R11)
 
 ## Build Log
 
