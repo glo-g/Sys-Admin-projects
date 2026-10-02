@@ -404,7 +404,7 @@ hostnamectl
 
 5. **Hit a real SELinux denial (403 Forbidden)** when reloading the site, because the new directory didn't carry the correct SELinux context even though standard file permissions were fine.
   
-   ![SELinux 403 error](/screenshots/nginxtest1.png)
+   ![SELinux 403 error](/screenshots/nginxtest2.png)
 
 6. **Confirmed the cause via `ausearch`**, rather than guessing.
    ```bash
@@ -420,7 +420,7 @@ hostnamectl
 
 8. **Verified the fix**, confirming the site loaded correctly and no new denials appeared.
    
-   ![SELinux fixed, site loading](/screenshots/nginxtest2.png)
+   ![SELinux fixed, site loading](/screenshots/runningnginx.png)
 
 **Verification**
 
