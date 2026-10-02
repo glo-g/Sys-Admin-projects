@@ -77,9 +77,7 @@ Rocky Linux is a free, community-maintained rebuild of Red Hat Enterprise Linux 
 | Item | Detail |
 |---|---|
 | Operating system | Rocky Linux |
-| Hypervisor | VirtualBox |
-| vCPUs / RAM | _fill in_ |
-| Disks | Primary disk (_size_), secondary disk for LVM (_size, added later_) |
+| Hypervisor | VirtualBox | 
 | Network mode | Bridged |
 | Host machine | Kali Linux_|
 
@@ -90,9 +88,9 @@ cat /etc/os-release
 hostnamectl
 ```
 
-![OS version and hostname](screenshots/catos.png)
+![OS version and hostname](/screenshots/catos.png)
 
-![VM settings](images/02-vm-settings.png)
+![VM settings](/screenshots/vmdetails.png)
 
 ## Skills Demonstrated
 
@@ -123,13 +121,7 @@ Tick each phase off as it is completed.
 
 ## Build Log
 
-Each phase will be added below as it is completed, using this format:
-
-> ### Phase N: Title
-> - **Goal:** what this phase achieves and which requirement it meets
-> - **Steps:** commands run, with a short explanation of each
-> - **Verification:** how I proved it worked
-> - **Screenshots:** evidence of the result
+Each phase will be added below as it is completed:
 
 ### Phase 1: Initial Setup and Updates
 
