@@ -142,7 +142,7 @@ hostnamectl
    ```
 
 3. **Checked whether a reboot was needed** 
-   sudo dnf needs-restarting -r
+   ```sudo dnf needs-restarting -r
    sudo reboot   # only if required
    ```
 
