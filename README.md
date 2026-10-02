@@ -90,11 +90,7 @@ cat /etc/os-release
 hostnamectl
 ```
 
-> **📸 Screenshot 1:** Output of `cat /etc/os-release` and `hostnamectl`
->
-> Save as `images/01-os-version.png`
-
-![OS version and hostname](images/01-os-version.png)
+![OS version and hostname](screenshots/catos.png)
 
 > **📸 Screenshot 2:** Your hypervisor window showing the VM settings (CPU, RAM, disks, network)
 >
