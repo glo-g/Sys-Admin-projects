@@ -154,7 +154,7 @@ hostnamectl
 
 5. **Set the hostname** to something clear and descriptive.
    ```bash
-   sudo hostnamectl set-hostname HOSTNAME_HERE
+   sudo hostnamectl set-hostname rocky linux
    ```
 
 **Verification**
