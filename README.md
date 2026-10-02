@@ -279,12 +279,12 @@ hostnamectl
 7. **Restarted SSH, keeping the original session open** as a safety net, and confirmed key login still worked in a brand new session before closing the first one.
    ```bash
    sudo systemctl restart sshd
-   ssh adminuser@192.168.1.66
+   ssh adminuser@192.168.1.69
    ```
 
 8. **Confirmed root and password logins were now blocked.**
    ```bash
-   ssh root@192.168.1.66 
+   ssh root@192.168.1.69
    ```
    ![SSH hardened](/screenshots/sshdenial.png)
 
