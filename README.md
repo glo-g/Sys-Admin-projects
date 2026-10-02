@@ -481,22 +481,14 @@ hostnamectl
    sudo mount -a
    df -h /srv/data
    ```
-   > 📸 **Screenshot 21:** `cat /etc/fstab` showing the entry, and `df -h` confirming it mounted via `mount -a`
-   >
-   > Save as `images/21-fstab-entry.png`
-
-   ![fstab entry](images/21-fstab-entry.png)
+![fstab entry](/screenshots/df-h.png)
 
 8. **Extended the volume live**, with the filesystem mounted and in use the whole time — this is the actual benefit of LVM over a plain partition.
    ```bash
    sudo lvextend -L +1G /dev/data_vg/data_lv
    sudo xfs_growfs /srv/data
    ```
-   > 📸 **Screenshot 22:** `df -h /srv/data` before and after, showing the size increase with no unmount and no downtime
-   >
-   > Save as `images/22-lvm-extended.png`
-
-   ![LVM extended live](images/22-lvm-extended.png)
+![LVM extended live](/screenshots/lv2.png)
 
 **Verification**
 
@@ -527,11 +519,7 @@ hostnamectl
    sudo chmod +x /opt/scripts/backup.sh
    sudo /opt/scripts/backup.sh
    ```
-   > 📸 **Screenshot 23:** `ls -lh /srv/backups` showing the archives, and the log file contents
-   >
-   > Save as `images/23-backup-manual-test.png`
-
-   ![Backup manual test](images/23-backup-manual-test.png)
+   ![Backup manual test](/screenshots/backup3.png)
 
 4. **Scheduled it with a systemd timer** rather than plain cron, for better logging via `journalctl`.
    ```ini
@@ -560,22 +548,14 @@ hostnamectl
    sudo systemctl daemon-reload
    sudo systemctl enable --now rocksolid-backup.timer
    ```
-   > 📸 **Screenshot 24:** `systemctl list-timers` showing the next scheduled run
-   >
-   > Save as `images/24-backup-timer.png`
-
-   ![Backup timer scheduled](images/24-backup-timer.png)
+![Backup timer scheduled](/screenshots/backupshow.png)
 
 5. **Forced a run through the automation path** (not just the script directly) to prove the systemd service/timer actually works end to end.
    ```bash
    sudo systemctl start rocksolid-backup.service
    journalctl -u rocksolid-backup.service --since "5 minutes ago"
    ```
-   > 📸 **Screenshot 25:** `journalctl` output showing the service ran successfully
-   >
-   > Save as `images/25-backup-run-log.png`
-
-   ![Backup run logged](images/25-backup-run-log.png)
+  ![Backup run logged](images/25-backup-run-log.png)
 
 6. **Found and fixed a quoting bug in the pruning logic.** Running the script with `bash -x` revealed:
    ```
