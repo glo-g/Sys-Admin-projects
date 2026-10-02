@@ -395,32 +395,22 @@ hostnamectl
    ```bash
    curl http://localhost
    ```
-   > 📸 **Screenshot 15:** the default Nginx page loading in the host browser
-   >
-   > Save as `images/15-nginx-default.png`
-
-   ![Default Nginx page](images/15-nginx-default.png)
+ 
+   ![Default Nginx page](/screenshots/nginxtest1.png)
 
 3. **Replaced the default page** with a simple custom one identifying the server.
 
 4. **Moved the site to a non-standard content directory** (`/srv/website` instead of `/usr/share/nginx/html`), which is common in real deployments, and updated `root` in `nginx.conf` to match.
 
 5. **Hit a real SELinux denial (403 Forbidden)** when reloading the site, because the new directory didn't carry the correct SELinux context even though standard file permissions were fine.
-   > 📸 **Screenshot 16:** 403 Forbidden error in the browser
-   >
-   > Save as `images/16-selinux-403.png`
-
-   ![SELinux 403 error](images/16-selinux-403.png)
+  
+   ![SELinux 403 error](/screenshots/nginxtest1.png)
 
 6. **Confirmed the cause via `ausearch`**, rather than guessing.
    ```bash
    sudo ausearch -m avc -ts recent
    ```
-   > 📸 **Screenshot 17:** `ausearch` output showing the `avc: denied` entry for `httpd_t`
-   >
-   > Save as `images/17-selinux-denial.png`
-
-   ![SELinux denial in ausearch](images/17-selinux-denial.png)
+   ![SELinux denial in ausearch](/screenshots/autosearchafter.png)
 
 7. **Fixed it the correct way**, by labelling the directory rather than disabling SELinux.
    ```bash
@@ -429,11 +419,8 @@ hostnamectl
    ```
 
 8. **Verified the fix**, confirming the site loaded correctly and no new denials appeared.
-   > 📸 **Screenshot 18:** site loading correctly, and `ls -Z /srv/website` showing the corrected context
-   >
-   > Save as `images/18-selinux-fixed.png`
-
-   ![SELinux fixed, site loading](images/18-selinux-fixed.png)
+   
+   ![SELinux fixed, site loading](/screenshots/nginxtest2.png)
 
 **Verification**
 
@@ -459,11 +446,7 @@ hostnamectl
    ```bash
    lsblk
    ```
-   > 📸 **Screenshot 19:** `lsblk` showing the new disk with no partitions
-   >
-   > Save as `images/19-new-disk.png`
-
-   ![New disk](images/19-new-disk.png)
+   ![New disk](/screenshots/lsblk.png)
 
 3. **Created a physical volume** on the new disk, marking it as usable by LVM.
    ```bash
@@ -486,11 +469,7 @@ hostnamectl
    sudo mkdir -p /srv/data
    sudo mount /dev/data_vg/data_lv /srv/data
    ```
-   > 📸 **Screenshot 20:** `df -h /srv/data` showing the mounted volume
-   >
-   > Save as `images/20-lvm-mounted.png`
-
-   ![LVM mounted](images/20-lvm-mounted.png)
+![LVM mounted](/screenshots/mount2.png)
 
 7. **Made the mount permanent** via `/etc/fstab`, using the volume's UUID (found with `blkid`) rather than a device name, since device names like `/dev/sdb` can shift between boots.
    ```
