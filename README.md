@@ -87,11 +87,6 @@ Rocky Linux is a free, community-maintained rebuild of Red Hat Enterprise Linux 
 cat /etc/os-release
 hostnamectl
 ```
-
-![OS version and hostname](/screenshots/catos.png)
-
-![VM settings](/screenshots/vmdetails.png)
-
 ## Skills Demonstrated
 
 - Linux installation and configuration (RHEL family)
@@ -131,25 +126,22 @@ Each phase will be added below as it is completed:
 
 1. **Recorded the starting state** to know what I was working with.
    ```bash
-   cat /etc/os-release
-   hostnamectl
-   ip -br addr
-   ```
-   > 📸 See Screenshots 1 and 2 in the [Environment](#environment) section.
 
+   cat /etc/os-release
+
+![OS version and hostname](/screenshots/catos.png)
+
+hostnamectl
+  
+![VM settings](/screenshots/vmdetails.png)
+   
 2. **Updated the system.** Unpatched packages are one of the most common ways servers get compromised.
    ```bash
    sudo dnf check-update
    sudo dnf update -y
    ```
-   > 📸 **Screenshot 3:** end of the `dnf update -y` output showing "Complete!"
-   >
-   > Save as `images/03-dnf-update.png`
 
-   ![dnf update complete](images/03-dnf-update.png)
-
-3. **Checked whether a reboot was needed** (usually after a kernel update).
-   ```bash
+3. **Checked whether a reboot was needed** 
    sudo dnf needs-restarting -r
    sudo reboot   # only if required
    ```
@@ -165,44 +157,11 @@ Each phase will be added below as it is completed:
    sudo hostnamectl set-hostname HOSTNAME_HERE
    ```
 
-6. **Set the timezone** and confirmed the clock is synchronised. Correct time matters for logs, cron jobs and security tools.
-   ```bash
-   sudo timedatectl set-timezone TIMEZONE_HERE
-   timedatectl
-   ```
-   > 📸 **Screenshot 4:** output of `hostnamectl` and `timedatectl` after the changes
-   >
-   > Save as `images/04-hostname-timezone.png`
-
-   ![Hostname and timezone](images/04-hostname-timezone.png)
-
-7. **Network address.** _Choose ONE of the two options below and delete the other._
-
-   **Option A: static IP configured**
-   ```bash
-   sudo nmcli con mod "CONNECTION_NAME" ipv4.method manual \
-     ipv4.addresses IP_ADDRESS/24 \
-     ipv4.gateway GATEWAY_IP \
-     ipv4.dns "1.1.1.1 8.8.8.8"
-   sudo nmcli con up "CONNECTION_NAME"
-   ```
-   A fixed address stops the server becoming unreachable if DHCP hands out a new one, which matters because SSH, the web service and firewall rules all depend on it.
-
-   **Option B: DHCP kept (NAT lab network)**
-   In this lab the server uses a DHCP-assigned address. In production I would configure a static IP or a DHCP reservation.
-
-   > 📸 **Screenshot 5:** output of `ip -br addr` and `ip route`
-   >
-   > Save as `images/05-network.png`
-
-   ![Network configuration](images/05-network.png)
-
 **Verification**
 
 - [x] System fully updated and rebooted if required
 - [x] `hostnamectl` shows the new hostname
-- [x] `timedatectl` shows the correct timezone and synchronised clock
-- [x] `ping -c 3 google.com` succeeds (network and DNS working)
+
 
 **Result:** R1 met. The server is patched, named, on the correct time, and has a known network address.
 
