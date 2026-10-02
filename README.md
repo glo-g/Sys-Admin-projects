@@ -92,10 +92,6 @@ hostnamectl
 
 ![OS version and hostname](screenshots/catos.png)
 
-> **📸 Screenshot 2:** Your hypervisor window showing the VM settings (CPU, RAM, disks, network)
->
-> Save as `images/02-vm-settings.png`
-
 ![VM settings](images/02-vm-settings.png)
 
 ## Skills Demonstrated
