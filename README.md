@@ -318,11 +318,7 @@ hostnamectl
    sudo firewall-cmd --state
    sudo firewall-cmd --list-all
    ```
-   > 📸 **Screenshot 11:** `firewall-cmd --list-all` before changes
-   >
-   > Save as `images/11-firewall-status.png`
-
-   ![Firewall status](images/11-firewall-status.png)
+  ![Firewall status](/screenshots/firewall.png)
 
 2. **Opened only the services needed**, in preparation for the web server in Phase 5, and made the rules persist across reboots.
    ```bash
@@ -330,22 +326,15 @@ hostnamectl
    sudo firewall-cmd --permanent --add-service=https
    sudo firewall-cmd --reload
    ```
-   > 📸 **Screenshot 12:** `firewall-cmd --list-all` showing ssh, http, https allowed
-   >
-   > Save as `images/12-firewall-rules.png`
 
-   ![Firewall rules](images/12-firewall-rules.png)
+   ![Firewall rules](/screenshots/httpafter.png)
 
 3. **Confirmed SELinux is enforcing**, rather than disabled or permissive (a common shortcut that removes an entire security layer).
    ```bash
    getenforce
    sestatus
    ```
-   > 📸 **Screenshot 13:** `sestatus` showing "Enforcing"
-   >
-   > Save as `images/13-selinux-status.png`
-
-   ![SELinux status](images/13-selinux-status.png)
+   ![SELinux status](/screenshots/enforcing.png)
 
 4. **Installed SELinux troubleshooting tools**, ready to diagnose and fix a real denial once the web server exists in Phase 5.
    ```bash
@@ -377,11 +366,7 @@ hostnamectl
    ```bash
    sudo fail2ban-client status sshd
    ```
-   > 📸 **Screenshot 14:** `fail2ban-client status sshd` showing a banned IP
-   >
-   > Save as `images/14-fail2ban-banned.png`
-
-   ![fail2ban banned IP](images/14-fail2ban-banned.png)
+   ![fail2ban banned IP](/screenshots/unbanfail2ban.png)
 
 **Verification**
 
