@@ -231,7 +231,7 @@ hostnamectl
 - [x] `id alice` and `id bob` show the correct group membership
 - [x] Alice (developers) can write to `/srv/shared/dev`
 - [x] Bob (webteam) can read but not write to `/srv/shared/dev`
-- [x] New files in the directory inherit the `developers` group (setgid working)
+- [x] New files in the directory inherit the `developers` group
 
 **Result:** R3 met. Access is now split by role instead of shared, and I've stopped administering the box as root.
 
@@ -245,21 +245,17 @@ hostnamectl
 
 1. **Generated an SSH key pair on the local (host) machine**, not the VM.
    ```bash
-   ssh-keygen -t ed25519 -C "adminuser@rocksolid"
+   ssh-keygen -t ed25519 -C "adminuser@198.168.1.69"
    ```
 
 2. **Switched the VM's network adapter from NAT to Bridged**, so the host machine could reach the VM directly on the home network. This was a real troubleshooting step — see the [Troubleshooting Log](#troubleshooting-log).
 
 3. **Copied the public key to the VM** and confirmed key-based login worked before changing any server settings.
    ```bash
-   ssh-copy-id adminuser@192.168.1.66
-   ssh adminuser@192.168.1.66
+   ssh-copy-id adminuser@192.168.1.69
+   ssh adminuser@192.168.1.69
    ```
-   > 📸 **Screenshot 9:** successful SSH login using the key, no password prompt
-   >
-   > Save as `images/09-ssh-key-login.png`
-
-   ![SSH key login](images/09-ssh-key-login.png)
+   ![SSH key login](/screenshots/useadmin.png)
 
 4. **Backed up the SSH config** before editing it.
    ```bash
@@ -288,13 +284,9 @@ hostnamectl
 
 8. **Confirmed root and password logins were now blocked.**
    ```bash
-   ssh root@192.168.1.66   # refused immediately
+   ssh root@192.168.1.66 
    ```
-   > 📸 **Screenshot 10:** `sshd -t` with no errors, and the refused root login attempt
-   >
-   > Save as `images/10-ssh-hardened.png`
-
-   ![SSH hardened](images/10-ssh-hardened.png)
+   ![SSH hardened](/screenshots/sshdenial.png)
 
 9. **Decision: kept the default SSH port (22).** I considered moving to a non-standard port (e.g. 2222) but decided against it for this build:
    - Changing the port only reduces automated/casual scanning; it doesn't stop a real port scan and isn't a substitute for real controls
