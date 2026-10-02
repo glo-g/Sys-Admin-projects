@@ -173,18 +173,14 @@ hostnamectl
 
 **Steps**
 
-1. **Created an admin user with sudo rights**, and stopped working as root from this point on.
+1. **Created an admin user with sudo rights**
    ```bash
    sudo useradd -m -G wheel adminuser
    sudo passwd adminuser
    su - adminuser
-   sudo whoami   # returns "root"
+   sudo whoami  
    ```
-   > 📸 **Screenshot 6:** `id adminuser` and `sudo whoami` returning `root`
-   >
-   > Save as `images/06-admin-user.png`
-
-   ![Admin user with sudo](images/06-admin-user.png)
+   ![Admin user with sudo](/screenshots/adminusergroup.png)
 
 2. **Created groups** for each team that needs distinct access.
    ```bash
@@ -212,11 +208,7 @@ hostnamectl
    sudo setfacl -m g:webteam:rx /srv/shared/dev
    sudo setfacl -d -m g:webteam:rx /srv/shared/dev
    ```
-   > 📸 **Screenshot 7:** `ls -ld /srv/shared/dev` and `getfacl /srv/shared/dev`
-   >
-   > Save as `images/07-shared-dir-acl.png`
-
-   ![Shared directory ACL](images/07-shared-dir-acl.png)
+![Shared directory ACL](/screenshots/ACL.png)
 
 6. **Verified the permission model with real tests.**
    ```bash
@@ -224,11 +216,9 @@ hostnamectl
    sudo -u bob ls /srv/shared/dev                    # succeeds (read-only)
    sudo -u bob touch /srv/shared/dev/hack.txt        # denied
    ```
-   > 📸 **Screenshot 8:** the three test commands, including Bob's "Permission denied"
-   >
-   > Save as `images/08-permission-test.png`
+  
 
-   ![Permission test results](images/08-permission-test.png)
+   ![Permission test results](/screenshots/groupdenial.png)
 
 7. **(Optional) Set password ageing** on staff accounts as a basic account-hygiene control.
    ```bash
