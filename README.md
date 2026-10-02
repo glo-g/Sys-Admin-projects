@@ -76,12 +76,12 @@ Rocky Linux is a free, community-maintained rebuild of Red Hat Enterprise Linux 
 
 | Item | Detail |
 |---|---|
-| Operating system | Rocky Linux (version: _fill in_) |
-| Hypervisor | _e.g. VirtualBox / VMware / KVM_ |
+| Operating system | Rocky Linux |
+| Hypervisor | VirtualBox |
 | vCPUs / RAM | _fill in_ |
 | Disks | Primary disk (_size_), secondary disk for LVM (_size, added later_) |
-| Network mode | _e.g. Bridged / NAT / Host-only_ |
-| Host machine | _e.g. Windows 11 / macOS / Linux_ |
+| Network mode | Bridged |
+| Host machine | Kali Linux_|
 
 **Confirm the OS version:**
 
