@@ -568,24 +568,13 @@ hostnamectl
    ls -1t "$BACKUP_DIR"/data-*.tar.gz | tail -n +8 | xargs -r rm --
    ```
 
-7. **Proved the pruning logic actually works**, rather than assuming it did. With only a handful of real backups, the "keep last 7" rule has nothing to prune yet, so this was tested by creating fake aged files and confirming the oldest were removed correctly:
-   ```bash
-   for i in {1..8}; do sudo touch /srv/backups/website-fake-$i.tar.gz; done
-   sudo /opt/scripts/backup.sh
-   ls -lt /srv/backups/website-*.tar.gz   # oldest fake files removed, 7 kept
-   ```
-   Test files were removed afterward so they wouldn't be mistaken for real backups.
 
-8. **Tested a real restore**, since an untested backup isn't a real backup.
+7. **Tested a real restore**, since an untested backup isn't a real backup.
    ```bash
    mkdir /tmp/restore-test && cd /tmp/restore-test
    sudo tar -xzf /srv/backups/website-<timestamp>.tar.gz
    ```
-   > 📸 **Screenshot 26:** restored files in `/tmp/restore-test`, confirming the backup is valid
-   >
-   > Save as `images/26-restore-test.png`
-
-   ![Restore test](images/26-restore-test.png)
+![Restore test](/screenshots/resorebackup.png)
 
 **Verification**
 
@@ -608,32 +597,26 @@ hostnamectl
    ```bash
    df -h
    ```
-   > 📸 **Screenshot 27:** `df -h` output across all mounted volumes
-   >
-   > Save as `images/27-disk-usage.png`
+  
 
-   ![Disk usage](images/27-disk-usage.png)
+   ![Disk usage](/screenshots/df-h.png)
 
 2. **Checked memory and CPU usage.**
    ```bash
    free -h
    htop
    ```
-   > 📸 **Screenshot 28:** `free -h` and `htop` running
-   >
-   > Save as `images/28-memory-cpu.png`
 
-   ![Memory and CPU](images/28-memory-cpu.png)
+
+   ![Memory and CPU](/screenshots/top.png)
 
 3. **Reviewed active network connections**, confirming only the expected services (SSH, HTTP, HTTPS) were listening, matching the firewall rules from Phase 4.
    ```bash
    sudo ss -tulnp
    ```
-   > 📸 **Screenshot 29:** `ss -tulnp` output
-   >
-   > Save as `images/29-network-connections.png`
+   
 
-   ![Network connections](images/29-network-connections.png)
+   ![Network connections](/screenshots/udp.png)
 
 4. **Reviewed authentication logs** for failed login attempts and fail2ban activity.
    ```bash
@@ -641,11 +624,7 @@ hostnamectl
    sudo grep "Failed password" /var/log/secure
    sudo journalctl -u fail2ban --since "today"
    ```
-   > 📸 **Screenshot 30:** evidence of failed login attempts and/or fail2ban activity
-   >
-   > Save as `images/30-auth-logs.png`
-
-   ![Auth logs](images/30-auth-logs.png)
+  
 
 5. **Confirmed log rotation was configured**, rather than assuming it, so logs don't grow unbounded.
    ```bash
@@ -653,26 +632,7 @@ hostnamectl
    ls /etc/logrotate.d/
    ```
 
-6. **Wrote a disk-space alert script**, reusing the scripting and scheduling pattern from Phase 7 but applied to a different problem — catching a filling disk before it becomes an outage.
-   ```bash
-   #!/bin/bash
-   THRESHOLD=80
-   LOGFILE="/var/log/rocksolid-diskcheck.log"
-
-   df -h --output=pcent,target | tail -n +2 | while read -r line; do
-       usage=$(echo "$line" | awk '{print $1}' | tr -d '%')
-       mount=$(echo "$line" | awk '{print $2}')
-       if [ "$usage" -ge "$THRESHOLD" ]; then
-           echo "[$(date)] WARNING: $mount is at ${usage}% usage" >> "$LOGFILE"
-       fi
-   done
-   ```
-   Tested by temporarily lowering `THRESHOLD` to confirm the warning actually triggers, not just that the script runs without error.
-   > 📸 **Screenshot 31:** the script running and triggering a warning during testing
-   >
-   > Save as `images/31-disk-alert-test.png`
-
-   ![Disk alert test](images/31-disk-alert-test.png)
+![LOG ROTATION](/screenshots/rotation.png)
 
 **Verification**
 
