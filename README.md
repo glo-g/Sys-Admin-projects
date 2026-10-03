@@ -555,7 +555,7 @@ hostnamectl
    sudo systemctl start rocksolid-backup.service
    journalctl -u rocksolid-backup.service --since "5 minutes ago"
    ```
-  ![Backup run logged](images/25-backup-run-log.png)
+ 
 
 6. **Found and fixed a quoting bug in the pruning logic.** Running the script with `bash -x` revealed:
    ```
