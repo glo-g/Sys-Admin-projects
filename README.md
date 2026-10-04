@@ -1,5 +1,5 @@
-# Secure Multi-Service Server Build (Rocky Linux)
-# RockSolid
+# RockSolid-Secure Multi-Service Server Build (Rocky Linux)
+
 
 **Building a secure, multi-service server on Rocky Linux.**
 
